@@ -29,11 +29,14 @@ import traceback
 from gi.repository import Gtk
 #pylint: disable=E0611
 from gi.repository import Gdk
+#pylint: disable=E0611
+from gi.repository import GObject
 
 import gnome_abrt.problems as problems
 import gnome_abrt.config as config
 import gnome_abrt.wrappers as wrappers
 import gnome_abrt.errors as errors
+from gnome_abrt import GNOME_ABRT_UI_DIR
 from gnome_abrt.tools import fancydate
 from gnome_abrt.l10n import _, GETTEXT_PROGNAME
 
@@ -47,9 +50,14 @@ def problems_filter(model, itrtr, data):
                 if val and pattern in val:
                     return True
 
-        return (item_match(pattern, problem)
-                or pattern in problem['application'].name
-                or pattern in problem.problem_id)
+        if item_match(pattern, problem) or pattern in problem.problem_id:
+            return True
+
+        app = problem['application']
+        if app is None or app.name is None:
+            return False
+
+        return pattern in app.name
 
     pattern = data.current_pattern
 
@@ -59,7 +67,7 @@ def problems_filter(model, itrtr, data):
     return match_pattern(pattern, model[itrtr][2])
 
 
-class ProblemsFilter:
+class ProblemsFilter(object):
 
     def __init__(self, window, view):
         self.current_pattern = ""
@@ -135,16 +143,30 @@ def handle_problem_and_source_errors(func):
 class OopsWindow(Gtk.ApplicationWindow):
     class OopsGtkBuilder(object):
         def __init__(self):
-            builder = Gtk.Builder()
-            self._builder = builder
-            builder.set_translation_domain(GETTEXT_PROGNAME)
+            builder = None
+            # try to load the glade from git at first step
+            ui_files = ['./src/gnome_abrt/oops.glade',
+                        GNOME_ABRT_UI_DIR + '/oops.glade']
+            for glade_file in ui_files:
+                if os.path.exists(glade_file):
+                    builder = Gtk.Builder()
+                    builder.set_translation_domain(GETTEXT_PROGNAME)
+                    try:
+                        builder.add_from_file(filename=glade_file)
+                    except GObject.GError as ex:
+                        builder = None
+                        logging.debug("Failed to load UI file: '{0}': {1}"
+                                .format(glade_file, str(ex)))
+                    else:
+                        break
+                else:
+                    logging.debug("UI file does not exist: '{0}'"
+                            .format(glade_file))
 
-            if os.path.exists('oops.glade'):
-                builder.add_from_file(filename='oops.glade')
-            else:
-                from gnome_abrt import gnome_abrt_glade
-                builder.add_from_string(
-                            gnome_abrt_glade.GNOME_ABRT_GLADE_CONTENTS)
+            if builder is None:
+                raise RuntimeError(_("Failed to load UI definition"))
+
+            self._builder = builder
 
             self.wnd_main = builder.get_object('wnd_main')
             self.gr_main_layout = builder.get_object('gr_main_layout')
@@ -155,7 +177,9 @@ class OopsWindow(Gtk.ApplicationWindow):
             self.lbl_app_version_value = builder.get_object(
                     'lbl_app_version_value')
             self.lbl_detected_value = builder.get_object('lbl_detected_value')
+            self.lbl_reported = builder.get_object('lbl_reported')
             self.lbl_reported_value = builder.get_object('lbl_reported_value')
+            self.lbl_repots = builder.get_object('lbl_reports')
             self.tv_problems = builder.get_object('tv_problems')
             self.tvs_problems = builder.get_object('tvs_problems')
             self.img_app_icon = builder.get_object('img_app_icon')
@@ -188,7 +212,7 @@ class OopsWindow(Gtk.ApplicationWindow):
             return obj
 
 
-    class SourceObserver:
+    class SourceObserver(object):
         def __init__(self, wnd):
             self.wnd = wnd
             self._enabled = True
@@ -219,7 +243,7 @@ class OopsWindow(Gtk.ApplicationWindow):
                 self.wnd._disable_source(ex.source, ex.temporary)
 
 
-    class OptionsObserver:
+    class OptionsObserver(object):
         def __init__(self, wnd):
             self.wnd = wnd
 
@@ -245,7 +269,7 @@ class OopsWindow(Gtk.ApplicationWindow):
         # move accelators group from the design window to this window
         self.add_accel_group(self._builder.ag_accelerators)
 
-        css_prv = Gtk.CssProvider()
+        css_prv = Gtk.CssProvider.new()
         css_prv.load_from_data("GtkViewport {\n"
                                "  background-color : @theme_bg_color;\n"
                                "}\n")
@@ -274,7 +298,7 @@ class OopsWindow(Gtk.ApplicationWindow):
                 logging.debug("Unavailable source: {0}".format(name))
                 continue
 
-            src_btn = Gtk.ToggleButton(label)
+            src_btn = Gtk.ToggleButton.new_with_label(label)
             src_btn.set_visible(True)
             # add an extra member source (I don't like it but it so easy)
             src_btn.source = src
@@ -485,7 +509,6 @@ class OopsWindow(Gtk.ApplicationWindow):
         old_selection = self._get_selected(self._builder.tvs_problems)
 
         self._reloading = True
-        old_selection = None
         try:
             self._builder.ls_problems.clear()
 
@@ -497,6 +520,15 @@ class OopsWindow(Gtk.ApplicationWindow):
 
         if storage_problems:
             model = self._builder.tv_problems.get_model()
+
+            # For some strange reason, get_model() sometimes returns None when
+            # this function is called from a signal handler but the signal
+            # handler is synchronously called from GMainLoop so there is no
+            # place for race conditions. If the described situation arises,
+            # base model will be used.
+            if model is None:
+                model = self._builder.ls_problems
+
             pit = None
             if old_selection:
                 pit = self._find_problem_iter(old_selection[0], model)
@@ -550,10 +582,13 @@ class OopsWindow(Gtk.ApplicationWindow):
         self._builder.tv_problems.scroll_to_cell(path)
 
     def _show_problem_links(self, submissions):
-        need_align = False
+        if not submissions:
+            return False
+
+        link_added = False
         for sbm in submissions:
             if problems.Problem.Submission.URL == sbm.rtype:
-                lnk = Gtk.LinkButton(sbm.data, sbm.title)
+                lnk = Gtk.LinkButton.new_with_label(sbm.data, sbm.title)
                 lnk.set_visible(True)
                 lnk.set_halign(Gtk.Align.START)
                 lnk.set_valign(Gtk.Align.START)
@@ -567,21 +602,24 @@ class OopsWindow(Gtk.ApplicationWindow):
                     lnk_lbl.set_line_wrap(True)
 
                 self._builder.vbx_links.pack_start(lnk, False, True, 0)
-                need_align = True
+                link_added = True
 
-        if need_align:
-            space = Gtk.Alignment()
+        if link_added:
+            space = Gtk.Alignment.new(0, 0, 0, 0)
             space.set_visible(True)
             space.set_vexpand(True)
             self._builder.vbx_links.pack_start(space, False, True, 0)
 
+        return link_added
+
     def _show_problem_message(self, message):
-        msg = Gtk.Label()
+        msg = Gtk.Label.new(message)
         msg.set_markup(message)
         msg.set_visible(True)
         msg.set_halign(Gtk.Align.START)
         msg.set_valign(Gtk.Align.START)
         msg.set_line_wrap(True)
+        msg.set_selectable(True)
 
         self._builder.vbx_problem_messages.pack_start(msg, False, True, 0)
 
@@ -633,21 +671,28 @@ class OopsWindow(Gtk.ApplicationWindow):
             else:
                 self._builder.img_app_icon.clear()
 
-            if problem['is_reported']:
-                self._builder.lbl_reported_value.set_text(_('yes'))
+            self._builder.lbl_reported.set_text(_("Reported"))
+            if problem['not-reportable']:
+                self._builder.lbl_reported_value.set_text(
+                        _('cannot be reported'))
                 self._show_problem_links(problem['submission'])
+                self._show_problem_message(problem['not-reportable'])
+            elif problem['is_reported']:
+                if self._show_problem_links(problem['submission']):
+                    self._builder.lbl_reported.set_text(_("Reports"))
+                    self._builder.lbl_reported_value.set_text('')
+
+                    if (not any((s.name == "Bugzilla"
+                                for s in problem['submission']))):
+                        self._show_problem_message(
+_("This problem has been reported, but a <i>Bugzilla</i> ticket has not"
+" been opened. Our developers may need more information to fix the problem.\n"
+"Please consider also <b>reporting it</b> to Bugzilla in"
+" order to provide that. Thank you."))
+                else:
+                    self._builder.lbl_reported_value.set_text(_('yes'))
             else:
                 self._builder.lbl_reported_value.set_text(_('no'))
-
-            if problem['not-reportable']:
-                self._show_problem_message(problem['not-reportable'])
-            elif (not problem['is_reported']
-                    or not any((s.name == "Bugzilla"
-                            for s in problem['submission']))):
-                self._show_problem_message(
-_("This problem hasn't been reported to <i>Bugzilla</i> yet. "
-    "Our developers may need more information to fix the problem.\n"
-    "Please consider <b>reporting it</b> - you may help them. Thank you."))
         else:
             if self._source is not None:
                 self._builder.nb_problem_layout.set_current_page(1)
@@ -712,7 +757,7 @@ _("This problem hasn't been reported to <i>Bugzilla</i> yet. "
     def on_gac_open_directory_activate(self, action):
         selection = self._get_selected(self._builder.tvs_problems)
         if selection:
-            subprocess.call(["xdg-open", selection[0].problem_id])
+            subprocess.Popen(["xdg-open", selection[0].problem_id])
         self._builder.menu_problem_item.popdown()
 
     def on_gac_copy_id_activate(self, action):

@@ -13,6 +13,7 @@
 # PARTICULAR PURPOSE.
 
 @SET_MAKE@
+
 VPATH = @srcdir@
 am__is_gnu_make = test -n '$(MAKEFILE_LIST)' && test -n '$(MAKELEVEL)'
 am__make_running_with_option = \
@@ -79,7 +80,8 @@ build_triplet = @build@
 host_triplet = @host@
 subdir = src/gnome_abrt
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
-	$(gnome_abrtexec_PYTHON) $(top_srcdir)/py-compile
+	$(gnome_abrtexec_PYTHON) $(top_srcdir)/py-compile \
+	$(dist_ui_DATA)
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/gettext.m4 \
 	$(top_srcdir)/m4/iconv.m4 $(top_srcdir)/m4/intlmacosx.m4 \
@@ -150,10 +152,12 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__py_compile = PYTHON=$(PYTHON) $(SHELL) $(py_compile)
-am__installdirs = "$(DESTDIR)$(gnome_abrtexecdir)"
+am__installdirs = "$(DESTDIR)$(gnome_abrtexecdir)" \
+	"$(DESTDIR)$(uidir)"
 am__pep3147_tweak = \
   sed -e 's|\.py$$||' -e 's|[^/]*$$|__pycache__/&.*.py|'
 py_compile = $(top_srcdir)/py-compile
+DATA = $(dist_ui_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 am__recursive_targets = \
@@ -395,12 +399,13 @@ gnome_abrtexec_PYTHON = \
 	signals.py \
 	tools.py \
 	views.py \
-	l10n.py \
-	gnome_abrt_glade.py
+	l10n.py
 
+dist_ui_DATA = oops.glade
+uidir = $(pkgdatadir)/ui
 gnome_abrtdir = $(pythondir)/gnome_abrt
 EXTRA_DIST = __init__.py.in oops.glade controller.py.in
-DISTCLEANFILES = __init__.py controller.py gnome_abrt_glade.py
+DISTCLEANFILES = __init__.py controller.py
 all: all-recursive
 
 .SUFFIXES:
@@ -488,6 +493,27 @@ uninstall-gnome_abrtexecPYTHON:
 	  $(am__uninstall_files_from_dir) || st=$$?; \
 	done; \
 	exit $$st
+install-dist_uiDATA: $(dist_ui_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(dist_ui_DATA)'; test -n "$(uidir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(uidir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(uidir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(uidir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(uidir)" || exit $$?; \
+	done
+
+uninstall-dist_uiDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dist_ui_DATA)'; test -n "$(uidir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(uidir)'; $(am__uninstall_files_from_dir)
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run 'make' without going through this Makefile.
@@ -646,10 +672,10 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-recursive
-all-am: Makefile all-local
+all-am: Makefile $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(gnome_abrtexecdir)"; do \
+	for dir in "$(DESTDIR)$(gnome_abrtexecdir)" "$(DESTDIR)$(uidir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -703,7 +729,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am:
+install-data-am: install-dist_uiDATA
 
 install-dvi: install-dvi-recursive
 
@@ -747,7 +773,7 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-gnome_abrtexecPYTHON
+uninstall-am: uninstall-dist_uiDATA uninstall-gnome_abrtexecPYTHON
 
 .MAKE: $(am__recursive_targets) check-am install-am install-strip
 
@@ -756,14 +782,15 @@ uninstall-am: uninstall-gnome_abrtexecPYTHON
 	cscopelist-am ctags ctags-am distclean distclean-generic \
 	distclean-libtool distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
-	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-gnome_abrtexecPYTHON install-html \
-	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	installdirs-am maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
-	ps ps-am tags tags-am uninstall uninstall-am \
+	install-data-am install-dist_uiDATA install-dvi install-dvi-am \
+	install-exec install-exec-am install-gnome_abrtexecPYTHON \
+	install-html install-html-am install-info install-info-am \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
+	uninstall-am uninstall-dist_uiDATA \
 	uninstall-gnome_abrtexecPYTHON
 
 
@@ -773,17 +800,10 @@ controller.py: controller.py.in Makefile
 __init__.py: __init__.py.in Makefile
 	sed -e s,\@PACKAGE\@,$(PACKAGE),g \
 	-e s,\@VERSION\@,$(VERSION),g \
+	-e s,\@GNOME_ABRT_UI_DIR\@,$(uidir),g \
 	-e s,\@localedir\@,$(localedir),g $< > $@
 
-gnome_abrt_glade.py: oops.glade Makefile
-	{ \
-	  echo '# coding=utf-8'; \
-	  echo 'GNOME_ABRT_GLADE_CONTENTS ="\'; \
-	  cat oops.glade | sed -e 's/\"/\\\"/g' -e 's/$$/\\/'; \
-	  echo '"'; \
-	} >gnome_abrt_glade.py
-
-all-local: __init__.py controller.py gnome_abrt_glade.py
+all-local: __init__.py controller.py
 
 check-local: $(gnome_abrtexec_PYTHON)
 @USE_PYLINT_TRUE@	$(PYLINT) --rcfile=$(top_builddir)/pylintrc $(abs_builddir)

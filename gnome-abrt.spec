@@ -5,8 +5,8 @@
 #         ! no binaries in $PATH ... caused by gnome-abrt python script in /usr/bin
 
 Name:       gnome-abrt
-Version:    0.3.1
-Release:    1%{?dist}
+Version:    0.3.4
+Release:    6%{?dist}
 Summary:    A utility for viewing problems that have occurred with the system
 
 Group:      User Interface/Desktops
@@ -14,10 +14,15 @@ License:    GPLv2+
 URL:        https://fedorahosted.org/abrt/
 Source0:    https://fedorahosted.org/released/abrt/%{name}-%{version}.tar.gz
 
-# Remove it with gnome-abrt > 0.3.1
-Patch1:     0001-Do-not-crash-on-None-in-signal-handler.patch
-Patch2:     0002-Fix-issues-found-by-new-pylint.patch
-Patch3:     0003-Do-not-change-old-selection-upon-reloading.patch
+# Remove with gnome-abrt > 0.3.4
+Patch1:     0001-Do-not-crash-when-a-FileIcon-cant-be-loaded.patch
+Patch2:     0002-Enable-multiple-problems-selection.patch
+Patch3:     0003-Update-translations.patch
+Patch4:     0004-Initialize-gnome_abrt-module-before-importing-its-su.patch
+
+# Downstream patches
+Patch1000:  gnome-abrt-0.3.4_dont_suggest_reporting_to_bugzilla.patch
+Patch1001:  gnome-abrt-0.3.4_translation-updates.patch
 
 BuildRequires: intltool
 BuildRequires: gettext
@@ -51,9 +56,15 @@ provides them with convenient way for managing these problems.
 
 %prep
 %setup -q
+
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+
+# Downstream patches
+%patch1000 -p1
+%patch1001 -p2
 
 
 %build
@@ -108,6 +119,47 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Thu Jan 30 2014 Jakub Filak <jfilak@redhat.com> - 0.3.4-6
+- Properly initialize gettext for glade files
+- Resolves: #1030335
+
+* Thu Jan 30 2014 Jakub Filak <jfilak@redhat.com> - 0.3.4-5
+- Translation updates
+- Resolves: #1047476
+
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.3.4-4
+- Mass rebuild 2014-01-24
+
+* Mon Jan 20 2014 Jakub Filak <jfilak@redhat.com> - 0.3.4-3
+- Select multiple records to delete in gnome-abrt
+- Do not crash when a FileIcon can't be loaded
+- Resolves: #1048120, #1054089
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.3.4-2
+- Mass rebuild 2013-12-27
+
+* Thu Dec 19 2013 Jakub Filak <jfilak@redhat.com> 0.3.4-1
+- Do not use deprecated GObject API
+- Make gnome-abrt compatible with Python GObject < 3.7.2
+- Do not fail if there is no Problem D-Bus service
+- Make all labels selectable
+- Run xdg-open for problem directory nonblocking
+- Fix translations (rhbz#1044241)
+- Make problem list resizable
+- Make info about Reported state of problem more clear
+- Remove message about missing Bugzilla ticket
+- Fix a bug in SIGCHLD handler causing 100% CPU usage
+- Show "yes" in Reported field only if no URL is available
+- Load only the most recent reported to value
+- Check if Application has valid name in filter fn
+- Fix issues found by new pylint
+- Related: #1044241
+- Resolves: #1044569
+
+* Fri Dec 06 2013 Jakub Filak <jfilak@redhat.com> 0.3.1-2
+- Update translations
+- Resolves: #1030335
+
 * Thu Sep 12 2013 Jakub Filak <jfilak@redhat.com> 0.3.1-1
 - Improve user experience
 - Make About dialog transient for the main window

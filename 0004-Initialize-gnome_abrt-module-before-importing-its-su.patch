@@ -1,0 +1,38 @@
+From 3b198d18d25f7e3ab05114544c9007d1ca00a9a7 Mon Sep 17 00:00:00 2001
+From: Jakub Filak <jfilak@redhat.com>
+Date: Thu, 30 Jan 2014 12:02:08 +0100
+Subject: [GNOME-ABRT PATCH 4/4] Initialize gnome_abrt module before importing
+ its submodules
+
+Resolves rhbz#1047476
+
+Signed-off-by: Jakub Filak <jfilak@redhat.com>
+---
+ src/gnome-abrt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/gnome-abrt b/src/gnome-abrt
+index 3b00e97..77770df 100755
+--- a/src/gnome-abrt
++++ b/src/gnome-abrt
+@@ -49,6 +49,8 @@ from gi.repository import Gio
+ 
+ # gnome-abrt
+ import gnome_abrt
++gnome_abrt.init()
++
+ import gnome_abrt.url
+ from gnome_abrt.views import OopsWindow
+ from gnome_abrt.controller import Controller
+@@ -332,8 +334,6 @@ class OopsApplication(Gtk.Application):
+ if __name__ == "__main__":
+     signal.signal(signal.SIGINT, lambda signum, frame: sys.exit(1))
+ 
+-    gnome_abrt.init()
+-
+     CMDARGS = ArgumentParser(
+             description = _('View and report application crashes'))
+     CMDARGS.add_argument('-v', '--verbose', action='count',
+-- 
+1.8.3.1
+

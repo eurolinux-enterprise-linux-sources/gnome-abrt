@@ -16,7 +16,8 @@
 ## Foundation, Inc., 51 Franklin Street, Suite 500, Boston, MA  02110-1335  USA
 
 PACKAGE = "gnome-abrt"
-VERSION = "0.3.1"
+VERSION = "0.3.4"
+GNOME_ABRT_UI_DIR = "/usr/local/share/gnome-abrt/ui"
 
 def init():
     import gnome_abrt.l10n

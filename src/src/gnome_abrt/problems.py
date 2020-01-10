@@ -63,11 +63,11 @@ class ProblemSource(object):
     def refresh(self):
         pass
 
-class Problem:
+class Problem(object):
     INITIAL_ELEMENTS = ['component', 'executable', 'cmdline', 'count', 'type',
                         'last_occurrence', 'time', 'reason']
 
-    class Submission:
+    class Submission(object):
         URL = "URL"
         MSG = "MSG"
         BTHASH = "BTHASH"
@@ -97,6 +97,10 @@ class Problem:
         @property
         def data(self):
             return self._data
+
+        @data.setter
+        def data(self, value):
+            self._data = value
 
         @property
         def title(self):
@@ -272,8 +276,15 @@ class Problem:
                     typ = ''.join(typ)
                     i += 1
 
-                    self.submission.append(
-                        Problem.Submission(self, pfx, typ, line[i:]))
+                    data = line[i:]
+                    sbm = next((s for s in self.submission
+                                if s.rtype == typ and s.name == pfx), None)
+
+                    if sbm is not None:
+                        sbm.data = data
+                    else:
+                        self.submission.append(
+                            Problem.Submission(self, pfx, typ, data))
 
         return self.submission
 
@@ -288,7 +299,7 @@ class MultipleSources(ProblemSource):
 
         self.sources = sources
 
-        class SourceObserver:
+        class SourceObserver(object):
             def __init__(self, parent):
                 self.parent = parent
 

@@ -20,18 +20,31 @@ import signal
 import logging
 import fcntl
 
+import gi
 #pylint: disable=E0611
 from gi.repository import GLib
 
 #pylint: disable=W0613
 def _handle_signal_sigchld(callback, data):
+    child_exited = False
     while True:
         try:
-            os.wait3(os.WNOHANG)
+            # We don't care about child's status (2. ret val)
+            chpid, _ = os.waitpid(-1, os.WNOHANG)
+            if chpid == 0:
+                # Break otherwise we would cycle until all children are exited
+                logging.debug("There are still children processes running")
+                break
+            child_exited = True
         except OSError as ex:
             # Breaks once no child is waiting
             logging.debug(ex)
             break
+
+    # If no child exited then return immediately because no action is necessary
+    if not child_exited:
+        logging.debug("Got SIGCHLD but no child exited")
+        return
 
     if data is not None:
         callback(data)
@@ -71,5 +84,9 @@ def glib_sigchld_signal_handler(callback, data=None):
     channel = GLib.IOChannel(pipes[0])
     channel.set_flags(GLib.IOFlags.NONBLOCK)
 
-    GLib.io_add_watch(channel, GLib.PRIORITY_DEFAULT, GLib.IOCondition.IN,
-                      _gsource_handle_signal, (callback, data))
+    if gi.version_info < (3, 7, 2):
+        channel.add_watch(GLib.IOCondition.IN,
+                _gsource_handle_signal, (callback, data))
+    else:
+        GLib.io_add_watch(channel, GLib.PRIORITY_DEFAULT, GLib.IOCondition.IN,
+                _gsource_handle_signal, (callback, data))

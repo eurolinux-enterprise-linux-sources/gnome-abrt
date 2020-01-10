@@ -1,0 +1,27 @@
+From d11f49fc0a1a016b7593d5dec860b848444bc934 Mon Sep 17 00:00:00 2001
+From: Jakub Filak <jfilak@redhat.com>
+Date: Fri, 3 Jan 2014 09:53:44 +0100
+Subject: [GNOME-ABRT PATCH 2/3] Enable multiple problems selection
+
+Closes rhbz#1048120
+
+Signed-off-by: Jakub Filak <jfilak@redhat.com>
+---
+ src/gnome_abrt/oops.glade | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/gnome_abrt/oops.glade b/src/gnome_abrt/oops.glade
+index 7aff34d..2b4ad5b 100644
+--- a/src/gnome_abrt/oops.glade
++++ b/src/gnome_abrt/oops.glade
+@@ -188,6 +188,7 @@
+                         <signal name="button-press-event" handler="on_tv_problems_button_press_event" swapped="no"/>
+                         <child internal-child="selection">
+                           <object class="GtkTreeSelection" id="tvs_problems">
++                            <property name="mode">multiple</property>
+                             <signal name="changed" handler="on_tvs_problems_changed" swapped="no"/>
+                           </object>
+                         </child>
+-- 
+1.8.3.1
+

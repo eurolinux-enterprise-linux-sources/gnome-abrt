@@ -1,0 +1,18 @@
+diff -ruN gnome-abrt-0.3.4.upstream/src/gnome_abrt/views.py gnome-abrt-0.3.4.rhel7/src/gnome_abrt/views.py
+--- gnome-abrt-0.3.4.upstream/src/gnome_abrt/views.py	2013-12-20 09:58:00.663185889 +0100
++++ gnome-abrt-0.3.4.rhel7/src/gnome_abrt/views.py	2013-12-20 09:58:36.101184078 +0100
+@@ -681,14 +681,6 @@
+                 if self._show_problem_links(problem['submission']):
+                     self._builder.lbl_reported.set_text(_("Reports"))
+                     self._builder.lbl_reported_value.set_text('')
+-
+-                    if (not any((s.name == "Bugzilla"
+-                                for s in problem['submission']))):
+-                        self._show_problem_message(
+-_("This problem has been reported, but a <i>Bugzilla</i> ticket has not"
+-" been opened. Our developers may need more information to fix the problem.\n"
+-"Please consider also <b>reporting it</b> to Bugzilla in"
+-" order to provide that. Thank you."))
+                 else:
+                     self._builder.lbl_reported_value.set_text(_('yes'))
+             else:
