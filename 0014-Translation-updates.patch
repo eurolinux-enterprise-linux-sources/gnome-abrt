@@ -1,0 +1,351 @@
+From 3647954f9ad2b391c61dc43f5a559edea115c759 Mon Sep 17 00:00:00 2001
+From: Matej Habrnal <mhabrnal@redhat.com>
+Date: Fri, 17 Jun 2016 15:30:30 +0200
+Subject: [PATCH] Translation updates
+
+Signed-off-by: Matej Habrnal <mhabrnal@redhat.com>
+---
+ po/de.po    |  9 +++++----
+ po/es.po    |  2 +-
+ po/fr.po    |  2 +-
+ po/it.po    |  5 +++--
+ po/ja.po    |  9 +++++----
+ po/ko.po    |  9 +++++----
+ po/pt_BR.po |  9 +++++----
+ po/ru.po    | 12 ++++++------
+ po/zh_CN.po |  9 +++++----
+ po/zh_TW.po |  9 +++++----
+ 10 files changed, 41 insertions(+), 34 deletions(-)
+
+diff --git a/po/de.po b/po/de.po
+index d059bb0..0e38da6 100644
+--- a/po/de.po
++++ b/po/de.po
+@@ -11,6 +11,7 @@
+ # Mario Blättermann <mariobl@freenet.de>, 2011
+ # Rainer Gromansperg <rgromans@redhat.com>, 2013
+ # hpeters <hpeters@redhat.com>, 2014
++# Lisa Stemmler <lstemmle@redhat.com>, 2016. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+@@ -19,13 +20,13 @@ msgstr ""
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"PO-Revision-Date: 2014-02-09 09:01-0500\n"
+-"Last-Translator: hpeters <hpeters@redhat.com>\n"
++"PO-Revision-Date: 2016-05-24 10:14-0400\n"
++"Last-Translator: Lisa Stemmler <lstemmle@redhat.com>\n"
+ "Language-Team: German (http://www.transifex.com/projects/p/gnome-abrt/"
+ "language/de/)\n"
+ "Language: de\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+-"X-Generator: Zanata 3.8.3\n"
++"X-Generator: Zanata 3.8.4\n"
+ 
+ #: ../src/gnome-abrt:218
+ msgid "My"
+@@ -232,7 +233,7 @@ msgstr "Speichert die ID des ausgewählten Problems in der Zwischenablage"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:13
+ msgid "Search"
+-msgstr ""
++msgstr "Suche"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:14
+ msgid "App"
+diff --git a/po/es.po b/po/es.po
+index bd86409..99579d0 100644
+--- a/po/es.po
++++ b/po/es.po
+@@ -28,7 +28,7 @@ msgstr ""
+ "language/es/)\n"
+ "Language: es\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+-"X-Generator: Zanata 3.8.3\n"
++"X-Generator: Zanata 3.8.4\n"
+ 
+ #: ../src/gnome-abrt:218
+ msgid "My"
+diff --git a/po/fr.po b/po/fr.po
+index dcc5173..fc065de 100644
+--- a/po/fr.po
++++ b/po/fr.po
+@@ -20,7 +20,7 @@ msgstr ""
+ "language/fr/)\n"
+ "Language: fr\n"
+ "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+-"X-Generator: Zanata 3.8.3\n"
++"X-Generator: Zanata 3.8.4\n"
+ 
+ #: ../src/gnome-abrt:218
+ msgid "My"
+diff --git a/po/it.po b/po/it.po
+index 8e71acf..26653d5 100644
+--- a/po/it.po
++++ b/po/it.po
+@@ -6,6 +6,7 @@
+ # fvalen <fvalen@redhat.com>, 2013-2014
+ # fvalen <fvalen@redhat.com>, 2011-2012
+ # fvalen <fvalen@redhat.com>, 2014
++# Terry Chuang <tchuang@redhat.com>, 2016. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+@@ -20,7 +21,7 @@ msgstr ""
+ "language/it/)\n"
+ "Language: it\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+-"X-Generator: Zanata 3.8.3\n"
++"X-Generator: Zanata 3.8.4\n"
+ 
+ #: ../src/gnome-abrt:218
+ msgid "My"
+@@ -228,7 +229,7 @@ msgstr "Archivi l'ID del problema selezionato negli appunti"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:13
+ msgid "Search"
+-msgstr ""
++msgstr "Cerca"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:14
+ msgid "App"
+diff --git a/po/ja.po b/po/ja.po
+index 0aab5ec..8af2dd9 100644
+--- a/po/ja.po
++++ b/po/ja.po
+@@ -14,6 +14,7 @@
+ # noriko <noriko@fedoraproject.org>, 2012
+ # noriko <noriko@fedoraproject.org>, 2010
+ # Jakub Filak <jfilak@redhat.com>, 2016. #zanata
++# Takuro Nagamoto <tnagamot@redhat.com>, 2016. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+@@ -22,13 +23,13 @@ msgstr ""
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"PO-Revision-Date: 2016-04-21 06:16-0400\n"
+-"Last-Translator: Jakub Filak <jfilak@redhat.com>\n"
++"PO-Revision-Date: 2016-05-19 02:13-0400\n"
++"Last-Translator: Takuro Nagamoto <tnagamot@redhat.com>\n"
+ "Language-Team: Japanese (http://www.transifex.com/projects/p/gnome-abrt/"
+ "language/ja/)\n"
+ "Language: ja\n"
+ "Plural-Forms: nplurals=1; plural=0;\n"
+-"X-Generator: Zanata 3.8.3\n"
++"X-Generator: Zanata 3.8.4\n"
+ 
+ #: ../src/gnome-abrt:218
+ msgid "My"
+@@ -216,7 +217,7 @@ msgstr "選択した問題の ID をクリップボードに保存します"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:13
+ msgid "Search"
+-msgstr ""
++msgstr "検索"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:14
+ msgid "App"
+diff --git a/po/ko.po b/po/ko.po
+index 508664c..16e791c 100644
+--- a/po/ko.po
++++ b/po/ko.po
+@@ -10,6 +10,7 @@
+ #   <raypoatssium@gmail.com>, 2011-2012, 2013
+ # eukim <eukim@redhat.com>, 2014
+ # Eun-Ju Kim <eukim@redhat.com>, 2015. #zanata
++# Terry Chuang <tchuang@redhat.com>, 2016. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+@@ -18,13 +19,13 @@ msgstr ""
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"PO-Revision-Date: 2015-09-23 12:24-0400\n"
+-"Last-Translator: Eun-Ju Kim <eukim@redhat.com>\n"
++"PO-Revision-Date: 2016-06-14 09:06-0400\n"
++"Last-Translator: Terry Chuang <tchuang@redhat.com>\n"
+ "Language-Team: Korean (http://www.transifex.com/projects/p/gnome-abrt/"
+ "language/ko/)\n"
+ "Language: ko\n"
+ "Plural-Forms: nplurals=1; plural=0;\n"
+-"X-Generator: Zanata 3.8.3\n"
++"X-Generator: Zanata 3.8.4\n"
+ 
+ #: ../src/gnome-abrt:218
+ msgid "My"
+@@ -212,7 +213,7 @@ msgstr "선택된 문제 ID를 클립보드에 저장"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:13
+ msgid "Search"
+-msgstr ""
++msgstr "검색 "
+ 
+ #: ../src/gnome_abrt/oops.glade.h:14
+ msgid "App"
+diff --git a/po/pt_BR.po b/po/pt_BR.po
+index 5b26f4e..e962562 100644
+--- a/po/pt_BR.po
++++ b/po/pt_BR.po
+@@ -8,6 +8,7 @@
+ # Rafael Ferreira <rafael.f.f1@gmail.com>, 2012
+ # Ricardo Gyorfy <rgyorfy@redhat.com>, 2011
+ # Glaucia Freitas <gcintra@redhat.com>, 2014
++# Andrea <adallape@redhat.com>, 2016. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+@@ -16,13 +17,13 @@ msgstr ""
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"PO-Revision-Date: 2014-02-19 08:32-0500\n"
+-"Last-Translator: Glaucia Freitas <gcintra@redhat.com>\n"
++"PO-Revision-Date: 2016-05-13 02:21-0400\n"
++"Last-Translator: Andrea <adallape@redhat.com>\n"
+ "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/"
+ "gnome-abrt/language/pt_BR/)\n"
+ "Language: pt-BR\n"
+ "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+-"X-Generator: Zanata 3.8.3\n"
++"X-Generator: Zanata 3.8.4\n"
+ 
+ #: ../src/gnome-abrt:218
+ msgid "My"
+@@ -231,7 +232,7 @@ msgstr "Armazena o ID de problemas selecionados no Clipboard"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:13
+ msgid "Search"
+-msgstr ""
++msgstr "Buscar"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:14
+ msgid "App"
+diff --git a/po/ru.po b/po/ru.po
+index b882060..1c6a005 100644
+--- a/po/ru.po
++++ b/po/ru.po
+@@ -16,14 +16,14 @@ msgstr ""
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"PO-Revision-Date: 2016-04-21 06:13-0400\n"
+-"Last-Translator: Jakub Filak <jfilak@redhat.com>\n"
++"PO-Revision-Date: 2016-05-18 09:27-0400\n"
++"Last-Translator: yuliya <ypoyarko@redhat.com>\n"
+ "Language-Team: Russian (http://www.transifex.com/projects/p/gnome-abrt/"
+ "language/ru/)\n"
+ "Language: ru\n"
+ "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+ "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+-"X-Generator: Zanata 3.8.3\n"
++"X-Generator: Zanata 3.8.4\n"
+ 
+ #: ../src/gnome-abrt:218
+ msgid "My"
+@@ -206,11 +206,11 @@ msgstr "_Открыть каталог проблемы"
+ msgid ""
+ "Opens the selected problem's data directory in the default file system "
+ "browser"
+-msgstr "Открывает каталог данных выбранной проблемы в менеджере файлов"
++msgstr "Открывает каталог с данными выбранной проблемы в менеджере файлов"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:11
+ msgid "_Copy problem's ID to Clipboard"
+-msgstr "_Скопировать ID проблемы в буфер"
++msgstr "_Копировать ID ошибки в буфер"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:12
+ msgid "Stores the selected problem's ID in Clibpoard"
+@@ -218,7 +218,7 @@ msgstr "Копирует идентификатор выбранной проб
+ 
+ #: ../src/gnome_abrt/oops.glade.h:13
+ msgid "Search"
+-msgstr ""
++msgstr "Поиск"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:14
+ msgid "App"
+diff --git a/po/zh_CN.po b/po/zh_CN.po
+index aa7ce09..3da085c 100644
+--- a/po/zh_CN.po
++++ b/po/zh_CN.po
+@@ -7,6 +7,7 @@
+ # Leah Liu <lliu@redhat.com>, 2011-2012
+ # Wei Liu <LLIU@REDHAT.COM>, 2013
+ # Wei Liu <LLIU@REDHAT.COM>, 2014
++# xhuang <xhuang@redhat.com>, 2016. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+@@ -15,13 +16,13 @@ msgstr ""
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"PO-Revision-Date: 2014-02-09 03:49-0500\n"
+-"Last-Translator: Wei Liu <LLIU@REDHAT.COM>\n"
++"PO-Revision-Date: 2016-06-09 12:29-0400\n"
++"Last-Translator: xhuang <xhuang@redhat.com>\n"
+ "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/gnome-"
+ "abrt/language/zh_CN/)\n"
+ "Language: zh-CN\n"
+ "Plural-Forms: nplurals=1; plural=0;\n"
+-"X-Generator: Zanata 3.8.3\n"
++"X-Generator: Zanata 3.8.4\n"
+ 
+ #: ../src/gnome-abrt:218
+ msgid "My"
+@@ -208,7 +209,7 @@ msgstr "在剪切版中保存所选问题的 ID"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:13
+ msgid "Search"
+-msgstr ""
++msgstr "搜索"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:14
+ msgid "App"
+diff --git a/po/zh_TW.po b/po/zh_TW.po
+index 7aaa721..cf8fb18 100644
+--- a/po/zh_TW.po
++++ b/po/zh_TW.po
+@@ -5,6 +5,7 @@
+ # Translators:
+ # Chester Cheng <ccheng@redhat.com>, 2012-2013
+ # Terry Chuang <tchuang@redhat.com>, 2011,2013
++# Chester Cheng <ccheng@redhat.com>, 2016. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+@@ -13,13 +14,13 @@ msgstr ""
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"PO-Revision-Date: 2014-02-06 04:26-0500\n"
+-"Last-Translator: Jakub Filak <jfilak@redhat.com>\n"
++"PO-Revision-Date: 2016-05-18 03:00-0400\n"
++"Last-Translator: Chester Cheng <ccheng@redhat.com>\n"
+ "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/gnome-"
+ "abrt/language/zh_TW/)\n"
+ "Language: zh-TW\n"
+ "Plural-Forms: nplurals=1; plural=0;\n"
+-"X-Generator: Zanata 3.8.3\n"
++"X-Generator: Zanata 3.8.4\n"
+ 
+ #: ../src/gnome-abrt:218
+ msgid "My"
+@@ -206,7 +207,7 @@ msgstr "將選擇的問題之 ID 儲存在剪貼簿中"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:13
+ msgid "Search"
+-msgstr ""
++msgstr "搜尋"
+ 
+ #: ../src/gnome_abrt/oops.glade.h:14
+ msgid "App"
+-- 
+1.8.3.1
+

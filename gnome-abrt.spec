@@ -6,7 +6,7 @@
 
 Name:       gnome-abrt
 Version:    0.3.4
-Release:    6%{?dist}
+Release:    8%{?dist}
 Summary:    A utility for viewing problems that have occurred with the system
 
 Group:      User Interface/Desktops
@@ -19,10 +19,19 @@ Patch1:     0001-Do-not-crash-when-a-FileIcon-cant-be-loaded.patch
 Patch2:     0002-Enable-multiple-problems-selection.patch
 Patch3:     0003-Update-translations.patch
 Patch4:     0004-Initialize-gnome_abrt-module-before-importing-its-su.patch
+Patch5:     0005-Translation-updates.patch
+Patch6:     0006-Pull-the-newest-rhel7-translations.patch
+Patch7:     0007-Move-from-transifex-to-zanata.patch
+Patch8:     0008-Add-gettext-mappings-to-the-zanata-config.patch
+Patch9:     0009-translations-update-zanata-configuration.patch
+Patch10:    0010-Test-availability-of-XServer-in-C-wrappers.patch
+Patch11:    0011-Do-not-crash-in-case-of-a-DBus-timeout.patch
+Patch12:    0012-Mark-Search-place-holder-text-for-translations.patch
+Patch13:    0013-Translation-updates.patch
+Patch14:    0014-Translation-updates.patch
 
 # Downstream patches
 Patch1000:  gnome-abrt-0.3.4_dont_suggest_reporting_to_bugzilla.patch
-Patch1001:  gnome-abrt-0.3.4_translation-updates.patch
 
 BuildRequires: intltool
 BuildRequires: gettext
@@ -61,14 +70,23 @@ provides them with convenient way for managing these problems.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
+%patch13 -p1
+%patch14 -p1
 
 # Downstream patches
 %patch1000 -p1
-%patch1001 -p2
 
 
 %build
-autoconf
+autoreconf -f
 %configure %checkoption
 make
 
@@ -110,6 +128,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %doc COPYING
 %{python_sitearch}/gnome_abrt
 %{_datadir}/%{name}
+%{_datadir}/%{name}/ui
 %{_bindir}/%{name}
 %{_datadir}/applications/*
 %{_datadir}/appdata/*
@@ -119,6 +138,16 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon Jun 20 2016 Matej Habrnal <mhabrnal@redhat.com> - 0.3.4-8
+- Translation updates
+- Resolves: #1272961
+
+* Mon May 2 2016 Jakub Filak <jfilak@redhat.com> - 0.3.4-7
+- Translation updates
+- Do not crash in case of a DBus timeout
+- Do not crash when testing availability of XServer
+- Resolves: #1178712, #1175662
+
 * Thu Jan 30 2014 Jakub Filak <jfilak@redhat.com> - 0.3.4-6
 - Properly initialize gettext for glade files
 - Resolves: #1030335

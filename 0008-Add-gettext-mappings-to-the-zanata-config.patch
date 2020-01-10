@@ -1,0 +1,63 @@
+From 075da726a4a6446db32b8688c16b9facb50d87a7 Mon Sep 17 00:00:00 2001
+From: Jakub Filak <jfilak@redhat.com>
+Date: Tue, 6 Jan 2015 07:44:31 -0500
+Subject: [PATCH] Add gettext mappings to the zanata config
+
+Signed-off-by: Jakub Filak <jfilak@redhat.com>
+---
+ zanata.xml | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/zanata.xml b/zanata.xml
+index b29f7fc..b5fa4da 100644
+--- a/zanata.xml
++++ b/zanata.xml
+@@ -13,21 +13,21 @@
+     <locale>bal</locale>
+     <locale>eu</locale>
+     <locale>bn</locale>
+-    <locale>bn-IN</locale>
++    <locale map-from="bn_IN">bn-IN</locale>
+     <locale>brx</locale>
+     <locale>bs</locale>
+     <locale>br</locale>
+     <locale>bg</locale>
+     <locale>ca</locale>
+-    <locale>zh-CN</locale>
+-    <locale>zh-HK</locale>
+-    <locale>zh-TW</locale>
++    <locale map-from="zh_CN">zh-CN</locale>
++    <locale map-from="zh_HK">zh-HK</locale>
++    <locale map-from="zh_TW">zh-TW</locale>
+     <locale>kw</locale>
+-    <locale>kw-GB</locale>
++    <locale map-from="kw_GB">kw-GB</locale>
+     <locale>cs</locale>
+     <locale>da</locale>
+     <locale>nl</locale>
+-    <locale>en-GB</locale>
++    <locale map-from="en_GB">en-GB</locale>
+     <locale>eo</locale>
+     <locale>et</locale>
+     <locale>fi</locale>
+@@ -66,7 +66,7 @@
+     <locale>fa</locale>
+     <locale>pl</locale>
+     <locale>pt</locale>
+-    <locale>pt-BR</locale>
++    <locale map-from="pt_BR">pt-BR</locale>
+     <locale>ro</locale>
+     <locale>ru</locale>
+     <locale>sr</locale>
+@@ -92,7 +92,7 @@
+     <locale>am</locale>
+     <locale>be</locale>
+     <locale>hr</locale>
+-    <locale>de-CH</locale>
++    <locale map-from="de_CH">de-CH</locale>
+     <locale>th</locale>
+     <locale>vi</locale>
+     <locale>zu</locale>
+-- 
+2.8.1
+

@@ -1,0 +1,34 @@
+From 5a5f803837056717833230097a8113748fb9021c Mon Sep 17 00:00:00 2001
+From: Jakub Filak <jfilak@redhat.com>
+Date: Thu, 3 Apr 2014 16:48:54 +0200
+Subject: [PATCH] Do not crash in case of a DBus timeout
+
+I am not sure how it could happen that _interface was None. Only
+possible way is when UnavaiableSources exception is raised, handled and
+the source is not disabled. This commit fixes symptoms and not the real
+cause but it works in upstream.
+
+Related: #1178712
+
+Signed-off-by: Jakub Filak <jfilak@redhat.com>
+---
+ src/gnome_abrt/dbus_problems.py | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/gnome_abrt/dbus_problems.py b/src/gnome_abrt/dbus_problems.py
+index 342fa18..454c469 100644
+--- a/src/gnome_abrt/dbus_problems.py
++++ b/src/gnome_abrt/dbus_problems.py
+@@ -116,6 +116,9 @@ class DBusProblemSource(problems.CachedSource):
+         self._bus = None
+ 
+     def _send_dbus_message(self, method, *args):
++        if self._interface is None:
++            self._connect_to_problems_bus()
++
+         try:
+             return method(self._interface, *args)
+         except dbus.exceptions.DBusException as ex:
+-- 
+2.8.1
+

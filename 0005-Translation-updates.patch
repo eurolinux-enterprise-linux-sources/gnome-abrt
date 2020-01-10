@@ -1,6 +1,37 @@
-diff -urN a/gnome-abrt-0.3.4/po/as.po b/gnome-abrt-0.3.4/po/as.po
---- a/gnome-abrt-0.3.4/po/as.po	2014-01-15 13:11:27.702990074 +0530
-+++ b/gnome-abrt-0.3.4/po/as.po	2014-01-15 13:11:42.791116018 +0530
+From 45d329f4532242703d193729512db2164a793ba1 Mon Sep 17 00:00:00 2001
+From: Jakub Filak <jfilak@redhat.com>
+Date: Thu, 6 Feb 2014 10:30:59 +0100
+Subject: [PATCH] Translation updates
+
+Signed-off-by: Jakub Filak <jfilak@redhat.com>
+---
+ po/as.po    | 146 ++++++++++++++++++++++++++------------
+ po/bn_IN.po | 182 +++++++++++++++++++++++++++++++----------------
+ po/de.po    | 204 +++++++++++++++++++++++++++++++++++------------------
+ po/es.po    | 201 ++++++++++++++++++++++++++++++++++------------------
+ po/fr.po    | 230 ++++++++++++++++++++++++++++++++++++++++--------------------
+ po/gu.po    | 149 +++++++++++++++++++++++++++------------
+ po/hi.po    | 151 +++++++++++++++++++++++++++------------
+ po/it.po    | 190 ++++++++++++++++++++++++++++++++++---------------
+ po/ja.po    | 182 +++++++++++++++++++++++++++++------------------
+ po/kn.po    | 159 +++++++++++++++++++++++++++++------------
+ po/ko.po    | 178 +++++++++++++++++++++++++++++-----------------
+ po/ml.po    | 174 ++++++++++++++++++++++++++++++++-------------
+ po/mr.po    | 151 +++++++++++++++++++++++++++------------
+ po/or.po    | 150 +++++++++++++++++++++++++++------------
+ po/pa.po    | 177 +++++++++++++++++++++++++++++++---------------
+ po/pt_BR.po | 197 +++++++++++++++++++++++++++++++++++----------------
+ po/ru.po    | 186 ++++++++++++++++++++++++++++++++----------------
+ po/ta.po    | 165 ++++++++++++++++++++++++++++++-------------
+ po/te.po    | 154 ++++++++++++++++++++++++++++------------
+ po/zh_CN.po | 171 ++++++++++++++++++++++++++++----------------
+ po/zh_TW.po | 172 +++++++++++++++++++++++++++++----------------
+ 22 files changed, 2504 insertions(+), 1167 deletions(-)
+
+diff --git a/po/as.po b/po/as.po
+index a8fadbe..fe29004 100644
+--- a/po/as.po
++++ b/po/as.po
 @@ -1,309 +1,369 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -414,9 +445,10 @@ diff -urN a/gnome-abrt-0.3.4/po/as.po b/gnome-abrt-0.3.4/po/as.po
  msgstr ""
 +"নতুন প্ৰক্ৰিয়া সৃষ্টিত এটা ত্ৰুটিৰ বাবে অনুৰোধ কৰা কাৰ্য্য এক্সিকিউট কৰিবলৈ "
 +"ব্যৰ্থ"
-diff -urN a/gnome-abrt-0.3.4/po/bn_IN.po b/gnome-abrt-0.3.4/po/bn_IN.po
---- a/gnome-abrt-0.3.4/po/bn_IN.po	2014-01-15 13:11:27.701990063 +0530
-+++ b/gnome-abrt-0.3.4/po/bn_IN.po	2014-01-15 13:11:42.791116018 +0530
+diff --git a/po/bn_IN.po b/po/bn_IN.po
+index c172d55..7158583 100644
+--- a/po/bn_IN.po
++++ b/po/bn_IN.po
 @@ -1,309 +1,373 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -850,9 +882,10 @@ diff -urN a/gnome-abrt-0.3.4/po/bn_IN.po b/gnome-abrt-0.3.4/po/bn_IN.po
  "creation"
  msgstr ""
 +"নতুন প্রক্রিয়া তৈরিতে একটি ত্রুটির কারণে অনুরোধ জানানো কাজ করা যায়নি"
-diff -urN a/gnome-abrt-0.3.4/po/de.po b/gnome-abrt-0.3.4/po/de.po
---- a/gnome-abrt-0.3.4/po/de.po	2014-01-15 13:11:27.700990054 +0530
-+++ b/gnome-abrt-0.3.4/po/de.po	2014-01-15 13:11:42.791116018 +0530
+diff --git a/po/de.po b/po/de.po
+index b550bd9..21e1514 100644
+--- a/po/de.po
++++ b/po/de.po
 @@ -1,313 +1,383 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -1304,9 +1337,10 @@ diff -urN a/gnome-abrt-0.3.4/po/de.po b/gnome-abrt-0.3.4/po/de.po
  msgstr ""
 +"Konnte die angeforderte Aktion nicht auszuführen, da ein Fehler in der "
 +"Erstellung neuer Prozesse aufgetreten ist"
-diff -urN a/gnome-abrt-0.3.4/po/es.po b/gnome-abrt-0.3.4/po/es.po
---- a/gnome-abrt-0.3.4/po/es.po	2014-01-15 13:11:27.703990084 +0530
-+++ b/gnome-abrt-0.3.4/po/es.po	2014-01-15 13:11:42.792116021 +0530
+diff --git a/po/es.po b/po/es.po
+index c6ac64d..df2ed8d 100644
+--- a/po/es.po
++++ b/po/es.po
 @@ -1,314 +1,381 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -1756,9 +1790,10 @@ diff -urN a/gnome-abrt-0.3.4/po/es.po b/gnome-abrt-0.3.4/po/es.po
  msgstr ""
 +"Falló al ejecutar la acción solicitada debido a un error en el nuevo proceso "
 +"de creación"
-diff -urN a/gnome-abrt-0.3.4/po/fr.po b/gnome-abrt-0.3.4/po/fr.po
---- a/gnome-abrt-0.3.4/po/fr.po	2014-01-15 13:11:27.702990074 +0530
-+++ b/gnome-abrt-0.3.4/po/fr.po	2014-01-15 13:11:42.792116021 +0530
+diff --git a/po/fr.po b/po/fr.po
+index 4ce76b5..7b23342 100644
+--- a/po/fr.po
++++ b/po/fr.po
 @@ -1,308 +1,386 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -2222,9 +2257,10 @@ diff -urN a/gnome-abrt-0.3.4/po/fr.po b/gnome-abrt-0.3.4/po/fr.po
  msgstr ""
 +"Échec de l'exécution de l'action requise à cause d'une erreur dans le "
 +"processus de création"
-diff -urN a/gnome-abrt-0.3.4/po/gu.po b/gnome-abrt-0.3.4/po/gu.po
---- a/gnome-abrt-0.3.4/po/gu.po	2014-01-15 13:11:27.701990063 +0530
-+++ b/gnome-abrt-0.3.4/po/gu.po	2014-01-15 13:11:42.792116021 +0530
+diff --git a/po/gu.po b/po/gu.po
+index 5517418..8c6d86c 100644
+--- a/po/gu.po
++++ b/po/gu.po
 @@ -1,309 +1,372 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -2641,9 +2677,10 @@ diff -urN a/gnome-abrt-0.3.4/po/gu.po b/gnome-abrt-0.3.4/po/gu.po
  "creation"
  msgstr ""
 +"સૂચિત ક્રિયાને ચાલુ કરવામાં નિષ્ફળતા નવી પ્રક્રિયા નિર્માણમાં ભૂલનાં કારણે"
-diff -urN a/gnome-abrt-0.3.4/po/hi.po b/gnome-abrt-0.3.4/po/hi.po
---- a/gnome-abrt-0.3.4/po/hi.po	2014-01-15 13:11:27.703990084 +0530
-+++ b/gnome-abrt-0.3.4/po/hi.po	2014-01-15 13:11:42.792116021 +0530
+diff --git a/po/hi.po b/po/hi.po
+index 8488741..370a0d0 100644
+--- a/po/hi.po
++++ b/po/hi.po
 @@ -1,310 +1,371 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -3061,9 +3098,10 @@ diff -urN a/gnome-abrt-0.3.4/po/hi.po b/gnome-abrt-0.3.4/po/hi.po
  msgstr ""
 +"नयी प्रक्रिया निर्माण में किसी त्रुटि के कारण निवेदित क्रिया के निष्पादन में "
 +"विफल"
-diff -urN a/gnome-abrt-0.3.4/po/it.po b/gnome-abrt-0.3.4/po/it.po
---- a/gnome-abrt-0.3.4/po/it.po	2014-01-15 13:11:27.701990063 +0530
-+++ b/gnome-abrt-0.3.4/po/it.po	2014-01-15 13:11:42.792116021 +0530
+diff --git a/po/it.po b/po/it.po
+index 4e3f0ac..a692e0a 100644
+--- a/po/it.po
++++ b/po/it.po
 @@ -1,308 +1,384 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -3506,9 +3544,10 @@ diff -urN a/gnome-abrt-0.3.4/po/it.po b/gnome-abrt-0.3.4/po/it.po
  msgstr ""
 +"Impossibile eseguire l'azione richiesta a causa della presenza di un errore "
 +"nella creazione di un nuovo processo"
-diff -urN a/gnome-abrt-0.3.4/po/ja.po b/gnome-abrt-0.3.4/po/ja.po
---- a/gnome-abrt-0.3.4/po/ja.po	2014-01-15 13:11:27.703990084 +0530
-+++ b/gnome-abrt-0.3.4/po/ja.po	2014-01-15 13:11:42.792116021 +0530
+diff --git a/po/ja.po b/po/ja.po
+index d188eb6..729c67f 100644
+--- a/po/ja.po
++++ b/po/ja.po
 @@ -1,316 +1,362 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -3940,9 +3979,10 @@ diff -urN a/gnome-abrt-0.3.4/po/ja.po b/gnome-abrt-0.3.4/po/ja.po
  "creation"
 -msgstr ""
 +msgstr "新しいプロセスの作成中にエラーが発生したため要求された動作を実行できませんでした"
-diff -urN a/gnome-abrt-0.3.4/po/kn.po b/gnome-abrt-0.3.4/po/kn.po
---- a/gnome-abrt-0.3.4/po/kn.po	2014-01-15 13:11:27.701990063 +0530
-+++ b/gnome-abrt-0.3.4/po/kn.po	2014-01-15 13:11:42.792116021 +0530
+diff --git a/po/kn.po b/po/kn.po
+index e35a48b..fc81e73 100644
+--- a/po/kn.po
++++ b/po/kn.po
 @@ -1,310 +1,377 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -4367,9 +4407,10 @@ diff -urN a/gnome-abrt-0.3.4/po/kn.po b/gnome-abrt-0.3.4/po/kn.po
  msgstr ""
 +"ಹೊಸ ಪ್ರಕ್ರಿಯೆಯನ್ನು ರಚಿಸುವಲ್ಲಿ ಉಂಟಾದ ಒಂದು ದೋಷದ ಕಾರಣ ಮನವಿ ಮಾಡಲಾದ ಕ್ರಿಯೆಯನ್ನು "
 +"ಚಲಾಯಿಸಲು ವಿಫಲಗೊಂಡಿದೆ"
-diff -urN a/gnome-abrt-0.3.4/po/ko.po b/gnome-abrt-0.3.4/po/ko.po
---- a/gnome-abrt-0.3.4/po/ko.po	2014-01-15 13:11:27.703990084 +0530
-+++ b/gnome-abrt-0.3.4/po/ko.po	2014-01-15 13:11:42.792116021 +0530
+diff --git a/po/ko.po b/po/ko.po
+index 866410b..81d5ce7 100644
+--- a/po/ko.po
++++ b/po/ko.po
 @@ -1,311 +1,363 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -4797,9 +4838,10 @@ diff -urN a/gnome-abrt-0.3.4/po/ko.po b/gnome-abrt-0.3.4/po/ko.po
  "creation"
 -msgstr ""
 +msgstr "새로운 프로세스를 생성하는 동안 오류가 발생하여 요청한 동작을 실행할 수 없습니다"
-diff -urN a/gnome-abrt-0.3.4/po/ml.po b/gnome-abrt-0.3.4/po/ml.po
---- a/gnome-abrt-0.3.4/po/ml.po	2014-01-15 13:11:27.703990084 +0530
-+++ b/gnome-abrt-0.3.4/po/ml.po	2014-01-15 13:11:42.793116027 +0530
+diff --git a/po/ml.po b/po/ml.po
+index e92d0a5..8f34408 100644
+--- a/po/ml.po
++++ b/po/ml.po
 @@ -1,308 +1,382 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -5233,9 +5275,10 @@ diff -urN a/gnome-abrt-0.3.4/po/ml.po b/gnome-abrt-0.3.4/po/ml.po
  msgstr ""
 +"പുതിയ പ്രക്രിയ തയ്യാറാക്കുന്നതിലുള്ള ഒരു പിശക് കാരണം ആവശ്യപ്പെട്ട "
 +"പ്രവര്‍ത്തി നടപ്പിലാക്കുന്നതില്‍ പരാജയം."
-diff -urN a/gnome-abrt-0.3.4/po/mr.po b/gnome-abrt-0.3.4/po/mr.po
---- a/gnome-abrt-0.3.4/po/mr.po	2014-01-15 13:11:27.703990084 +0530
-+++ b/gnome-abrt-0.3.4/po/mr.po	2014-01-15 13:11:42.793116027 +0530
+diff --git a/po/mr.po b/po/mr.po
+index d5a3b16..360e835 100644
+--- a/po/mr.po
++++ b/po/mr.po
 @@ -1,281 +1,347 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -5620,7 +5663,7 @@ diff -urN a/gnome-abrt-0.3.4/po/mr.po b/gnome-abrt-0.3.4/po/mr.po
  #: ../src/gnome_abrt/views.py:660
  msgid "{0} problem has been detected"
  msgstr "{0} अडचण आढळली"
-@@ -288,20 +354,17 @@
+@@ -288,20 +354,17 @@ msgstr "कळवणे शक्य नाही"
  msgid "Reports"
  msgstr "अहवाल"
  
@@ -5646,9 +5689,10 @@ diff -urN a/gnome-abrt-0.3.4/po/mr.po b/gnome-abrt-0.3.4/po/mr.po
  #: ../src/gnome_abrt/controller.py:78
  msgid ""
  "Failed to execute the requested action because of an error in new process "
-diff -urN a/gnome-abrt-0.3.4/po/or.po b/gnome-abrt-0.3.4/po/or.po
---- a/gnome-abrt-0.3.4/po/or.po	2014-01-15 13:11:27.703990084 +0530
-+++ b/gnome-abrt-0.3.4/po/or.po	2014-01-15 13:11:42.793116027 +0530
+diff --git a/po/or.po b/po/or.po
+index 867d70c..9f03de7 100644
+--- a/po/or.po
++++ b/po/or.po
 @@ -1,308 +1,370 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -6064,9 +6108,10 @@ diff -urN a/gnome-abrt-0.3.4/po/or.po b/gnome-abrt-0.3.4/po/or.po
  msgstr ""
 +"ନୂତନ ଏକ ପ୍ରକ୍ରିୟା ନିର୍ମାଣରେ ତୃଟି ହେତୁ ଅନୁରୋଧ କରାଯାଇଥିବା କାର୍ଯ୍ୟକୁ ନିଷ୍ପାଦନ "
 +"କରିବାରେ ବିଫଳ ହୋଇଛି"
-diff -urN a/gnome-abrt-0.3.4/po/pa.po b/gnome-abrt-0.3.4/po/pa.po
---- a/gnome-abrt-0.3.4/po/pa.po	2014-01-15 13:11:27.701990063 +0530
-+++ b/gnome-abrt-0.3.4/po/pa.po	2014-01-15 13:11:42.793116027 +0530
+diff --git a/po/pa.po b/po/pa.po
+index 37cb87d..ec80136 100644
+--- a/po/pa.po
++++ b/po/pa.po
 @@ -1,308 +1,373 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -6497,9 +6542,10 @@ diff -urN a/gnome-abrt-0.3.4/po/pa.po b/gnome-abrt-0.3.4/po/pa.po
  msgstr ""
 +"ਨਵੀਂ ਕਾਰਵਾਈ ਬਣਾਉਣ ਵਿੱਚ ਗਲਤੀ ਦੇ ਕਰ ਕੇ ਬੇਨਤੀ ਕੀਤੀ ਗਈ ਕਾਰਵਾਈ ਨੂੰ ਅਮਲ ਵਿੱਚ ਲਿਆਉਣ "
 +"ਵਿੱਚ ਅਸਫਲ"
-diff -urN a/gnome-abrt-0.3.4/po/pt_BR.po b/gnome-abrt-0.3.4/po/pt_BR.po
---- a/gnome-abrt-0.3.4/po/pt_BR.po	2014-01-15 13:11:27.703990084 +0530
-+++ b/gnome-abrt-0.3.4/po/pt_BR.po	2014-01-15 13:11:42.793116027 +0530
+diff --git a/po/pt_BR.po b/po/pt_BR.po
+index 801e454..26f259e 100644
+--- a/po/pt_BR.po
++++ b/po/pt_BR.po
 @@ -1,310 +1,385 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -6947,9 +6993,10 @@ diff -urN a/gnome-abrt-0.3.4/po/pt_BR.po b/gnome-abrt-0.3.4/po/pt_BR.po
  msgstr ""
 +"Falha ao executar a ação requisitada por causa de um erro no novo processo "
 +"de criação."
-diff -urN a/gnome-abrt-0.3.4/po/ru.po b/gnome-abrt-0.3.4/po/ru.po
---- a/gnome-abrt-0.3.4/po/ru.po	2014-01-15 13:11:27.703990084 +0530
-+++ b/gnome-abrt-0.3.4/po/ru.po	2014-01-15 13:11:42.793116027 +0530
+diff --git a/po/ru.po b/po/ru.po
+index 0960254..9502f3c 100644
+--- a/po/ru.po
++++ b/po/ru.po
 @@ -1,308 +1,370 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -7383,9 +7430,10 @@ diff -urN a/gnome-abrt-0.3.4/po/ru.po b/gnome-abrt-0.3.4/po/ru.po
  "creation"
 -msgstr ""
 +msgstr "Не удалось выполнить действие: ошибка при создании нового процесса."
-diff -urN a/gnome-abrt-0.3.4/po/ta.po b/gnome-abrt-0.3.4/po/ta.po
---- a/gnome-abrt-0.3.4/po/ta.po	2014-01-15 13:11:27.702990074 +0530
-+++ b/gnome-abrt-0.3.4/po/ta.po	2014-01-15 13:11:42.793116027 +0530
+diff --git a/po/ta.po b/po/ta.po
+index e8f4d6b..88ba60d 100644
+--- a/po/ta.po
++++ b/po/ta.po
 @@ -1,312 +1,377 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -7591,6 +7639,7 @@ diff -urN a/gnome-abrt-0.3.4/po/ta.po b/gnome-abrt-0.3.4/po/ta.po
  "about changes in problem data happening outside of this application. This "
  "event do not affect any other functionality."
 -msgstr "'{0}' இல் உள்ள கவனிப்புகளுக்கான inotify இன் வரம்பை நீங்கள் அடைந்துவிட்டுள்ளதாகத் தெரிகிறது. inotify ஐ சரியாக அமைவாக்கம் செய்வதன் மூலம் நீங்கள் இந்த வரம்பை அதிகரிக்கலாம். மேலும் விவரங்களுக்குman inotify(7) ஐப் பார்க்கவும். இந்த நிகழ்வினால், இந்த பயன்பாட்டுக்கு வெளியே நிகழும் சிக்கல் தரவிலான மாற்றங்களைப் பற்றி உங்களுக்கு அறிவிக்கப்படாது. இந்த நிகழ்வினால் மற்ற செயல்பாடுகள் எதுவும் பாதிக்கப்படாது."
+-
 +msgstr ""
 +"'{0}' இல் உள்ள கவனிப்புகளுக்கான inotify இன் வரம்பை நீங்கள் "
 +"அடைந்துவிட்டுள்ளதாகத் தெரிகிறது. inotify ஐ சரியாக அமைவாக்கம் செய்வதன் மூலம் "
@@ -7598,7 +7647,7 @@ diff -urN a/gnome-abrt-0.3.4/po/ta.po b/gnome-abrt-0.3.4/po/ta.po
 +"பார்க்கவும். இந்த நிகழ்வினால், இந்த பயன்பாட்டுக்கு வெளியே நிகழும் சிக்கல் "
 +"தரவிலான மாற்றங்களைப் பற்றி உங்களுக்கு அறிவிக்கப்படாது. இந்த நிகழ்வினால் மற்ற "
 +"செயல்பாடுகள் எதுவும் பாதிக்கப்படாது."
- 
++
 +# translation auto-copied from project gnome-abrt, version 0.3.1, document gnome-abrt
  #: ../src/gnome_abrt/directory_problems.py:262
  msgid "Can't open directory: '{0}'"
@@ -7813,9 +7862,10 @@ diff -urN a/gnome-abrt-0.3.4/po/ta.po b/gnome-abrt-0.3.4/po/ta.po
 +msgstr ""
 +"புதிய செயலாக்கத்தை உருவாக்குவதில் ஏற்பட்ட ஒரு பிழையின் காரணமாக, கோரப்பட்ட "
 +"செயலை மேற்கொள்வதில் தோல்வியடைந்தது"
-diff -urN a/gnome-abrt-0.3.4/po/te.po b/gnome-abrt-0.3.4/po/te.po
---- a/gnome-abrt-0.3.4/po/te.po	2014-01-15 13:11:27.702990074 +0530
-+++ b/gnome-abrt-0.3.4/po/te.po	2014-01-15 13:11:42.794116035 +0530
+diff --git a/po/te.po b/po/te.po
+index 53e3c64..ed76478 100644
+--- a/po/te.po
++++ b/po/te.po
 @@ -1,308 +1,374 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -8235,9 +8285,10 @@ diff -urN a/gnome-abrt-0.3.4/po/te.po b/gnome-abrt-0.3.4/po/te.po
 +msgstr ""
 +"కొత్త విధానం సృష్టించుటలో దోషం కారణంగా అభ్యర్ధించిన చర్య నిర్వర్తించుటకు "
 +"విఫలమైంది"
-diff -urN a/gnome-abrt-0.3.4/po/zh_CN.po b/gnome-abrt-0.3.4/po/zh_CN.po
---- a/gnome-abrt-0.3.4/po/zh_CN.po	2014-01-15 13:11:27.702990074 +0530
-+++ b/gnome-abrt-0.3.4/po/zh_CN.po	2014-01-15 13:11:42.794116035 +0530
+diff --git a/po/zh_CN.po b/po/zh_CN.po
+index e59319b..d3ee877 100644
+--- a/po/zh_CN.po
++++ b/po/zh_CN.po
 @@ -1,309 +1,358 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -8658,9 +8709,10 @@ diff -urN a/gnome-abrt-0.3.4/po/zh_CN.po b/gnome-abrt-0.3.4/po/zh_CN.po
  "creation"
 -msgstr ""
 +msgstr "因为在创建新进程时出错所以无法执行所需操作"
-diff -urN a/gnome-abrt-0.3.4/po/zh_TW.po b/gnome-abrt-0.3.4/po/zh_TW.po
---- a/gnome-abrt-0.3.4/po/zh_TW.po	2014-01-15 13:11:27.700990054 +0530
-+++ b/gnome-abrt-0.3.4/po/zh_TW.po	2014-01-15 13:11:42.794116035 +0530
+diff --git a/po/zh_TW.po b/po/zh_TW.po
+index 6e9bfcf..7152c2f 100644
+--- a/po/zh_TW.po
++++ b/po/zh_TW.po
 @@ -1,308 +1,360 @@
 -# SOME DESCRIPTIVE TITLE.
 -# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -9082,3 +9134,6 @@ diff -urN a/gnome-abrt-0.3.4/po/zh_TW.po b/gnome-abrt-0.3.4/po/zh_TW.po
  "creation"
 -msgstr ""
 +msgstr "因為建立新程序時產生問題，故無法執行所要求的動作"
+-- 
+2.8.1
+

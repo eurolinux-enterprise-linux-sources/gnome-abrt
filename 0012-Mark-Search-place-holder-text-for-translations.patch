@@ -1,0 +1,28 @@
+From b6a3252a4543e77675b3f0a7521cc94d095c0ed5 Mon Sep 17 00:00:00 2001
+From: Jakub Filak <jfilak@redhat.com>
+Date: Mon, 11 Apr 2016 11:33:49 +0200
+Subject: [PATCH] Mark 'Search' place holder text for translations
+
+Related: #1272961
+
+Signed-off-by: Jakub Filak <jfilak@redhat.com>
+---
+ src/gnome_abrt/oops.glade | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/gnome_abrt/oops.glade b/src/gnome_abrt/oops.glade
+index 2b4ad5b..66833e0 100644
+--- a/src/gnome_abrt/oops.glade
++++ b/src/gnome_abrt/oops.glade
+@@ -128,7 +128,7 @@
+                 <property name="invisible_char_set">True</property>
+                 <property name="caps_lock_warning">False</property>
+                 <property name="secondary_icon_name">edit-find</property>
+-                <property name="placeholder_text">Search</property>
++                <property name="placeholder_text" translatable="yes">Search</property>
+                 <signal name="changed" handler="on_te_search_changed" swapped="no"/>
+               </object>
+               <packing>
+-- 
+2.8.1
+

@@ -1,0 +1,154 @@
+From a05108ccee98585d1a17cbe9db38a0894223d748 Mon Sep 17 00:00:00 2001
+From: Matej Habrnal <mhabrnal@redhat.com>
+Date: Tue, 2 Jun 2015 15:06:26 +0200
+Subject: [PATCH] Test availability of XServer in C wrappers
+
+Replace Python implementation of the test function with C implementation.
+
+The Python implementation was buggy. Despite I know how to fix the python
+implementation, I have decided to backport upstream patch because the
+patch is well tested and easier to comprehend.
+
+Resolves #1188002
+
+Signed-off-by: Matej Habrnal <mhabrnal@redhat.com>
+---
+ src/gnome-abrt                          | 20 +++++--------------
+ src/gnome_abrt/wrappers/Makefile.am     |  1 +
+ src/gnome_abrt/wrappers/__init__.py     |  3 ++-
+ src/gnome_abrt/wrappers/common.h        |  3 +++
+ src/gnome_abrt/wrappers/module.c        |  1 +
+ src/gnome_abrt/wrappers/xserver_check.c | 35 +++++++++++++++++++++++++++++++++
+ 6 files changed, 47 insertions(+), 16 deletions(-)
+ create mode 100644 src/gnome_abrt/wrappers/xserver_check.c
+
+diff --git a/src/gnome-abrt b/src/gnome-abrt
+index 77770df..16c25ed 100755
+--- a/src/gnome-abrt
++++ b/src/gnome-abrt
+@@ -23,21 +23,13 @@ import sys
+ import logging
+ import signal
+ from argparse import ArgumentParser
++from gnome_abrt.wrappers import (show_events_list_dialog,
++                                 show_system_config_abrt_dialog,
++                                 can_connect_to_xserver)
+ 
+-from ctypes import cdll, util
+-
+-XLIB_PATH = util.find_library('X11')
+-if not XLIB_PATH:
+-    sys.stderr.write("Could not load X11 library\n")
+-    sys.exit(1)
+-
+-XLIB = cdll.LoadLibrary(XLIB_PATH)
+-DISPLAY = XLIB.XOpenDisplay(None)
+-if DISPLAY == 0:
++if not can_connect_to_xserver():
+     sys.stderr.write("Cannot connect to X server\n")
+-    sys.exit(2)
+-
+-XLIB.XCloseDisplay(DISPLAY)
++    sys.exit(1)
+ 
+ # pygobject
+ #pylint: disable=E0611
+@@ -61,8 +53,6 @@ from gnome_abrt.dbus_problems import (get_standard_problems_source,
+                                       get_foreign_problems_source)
+ from gnome_abrt.errors import UnavailableSource
+ from gnome_abrt.l10n import _
+-from gnome_abrt.wrappers import (show_events_list_dialog,
+-                                 show_system_config_abrt_dialog)
+ from gnome_abrt.config import get_configuration
+ from gnome_abrt.dialogs import show_report_problem_with_abrt
+ from gnome_abrt.url.gliburltitle import (GetURLTitleSourcePool,
+diff --git a/src/gnome_abrt/wrappers/Makefile.am b/src/gnome_abrt/wrappers/Makefile.am
+index 96985ba..1ed67b2 100644
+--- a/src/gnome_abrt/wrappers/Makefile.am
++++ b/src/gnome_abrt/wrappers/Makefile.am
+@@ -7,6 +7,7 @@ wrappersexec_LTLIBRARIES = _wrappers.la
+ _wrappers_la_SOURCES = \
+     module.c \
+     configure.c \
++    xserver_check.c \
+     common.h
+ 
+ _wrappers_la_CPPFLAGS = \
+diff --git a/src/gnome_abrt/wrappers/__init__.py b/src/gnome_abrt/wrappers/__init__.py
+index ef0989f..da57b4c 100644
+--- a/src/gnome_abrt/wrappers/__init__.py
++++ b/src/gnome_abrt/wrappers/__init__.py
+@@ -16,4 +16,5 @@
+ ## Foundation, Inc., 51 Franklin Street, Suite 500, Boston, MA  02110-1335  USA
+ 
+ from gnome_abrt.wrappers._wrappers import (show_events_list_dialog,
+-                                           show_system_config_abrt_dialog)
++                                           show_system_config_abrt_dialog,
++                                           can_connect_to_xserver)
+diff --git a/src/gnome_abrt/wrappers/common.h b/src/gnome_abrt/wrappers/common.h
+index 772ff15..e1e3527 100644
+--- a/src/gnome_abrt/wrappers/common.h
++++ b/src/gnome_abrt/wrappers/common.h
+@@ -21,3 +21,6 @@
+ /* module-level functions */
+ PyObject *p_show_events_list_dialog(PyObject *module, PyObject *args);
+ PyObject *p_show_system_config_abrt_dialog(PyObject *module, PyObject *args);
++
++/* Testing whether it is possible to connect to the X server */
++PyObject *p_can_connect_to_xserver(PyObject *module, PyObject *args);
+diff --git a/src/gnome_abrt/wrappers/module.c b/src/gnome_abrt/wrappers/module.c
+index 2245e19..6e1f9b1 100644
+--- a/src/gnome_abrt/wrappers/module.c
++++ b/src/gnome_abrt/wrappers/module.c
+@@ -22,6 +22,7 @@ static PyMethodDef module_methods[] = {
+     /* method_name, func, flags, doc_string */
+     { "show_events_list_dialog", p_show_events_list_dialog, METH_VARARGS, "Open a dialog with event configurations" },
+     { "show_system_config_abrt_dialog", p_show_system_config_abrt_dialog, METH_VARARGS, "Open a dialog with ABRT configuration" },
++    { "can_connect_to_xserver", p_can_connect_to_xserver, METH_VARARGS, "Testing whether it is possible to connect to the X server" },
+     { NULL }
+ };
+ 
+diff --git a/src/gnome_abrt/wrappers/xserver_check.c b/src/gnome_abrt/wrappers/xserver_check.c
+new file mode 100644
+index 0000000..bd0812c
+--- /dev/null
++++ b/src/gnome_abrt/wrappers/xserver_check.c
+@@ -0,0 +1,35 @@
++/*
++    Copyright (C) 2015  Abrt team.
++    Copyright (C) 2015  RedHat inc.
++
++    This program is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    This program is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License along
++    with this program; if not, write to the Free Software Foundation, Inc.,
++    51 Franklin Street, Suite 500, Boston, MA  02110-1335  USA
++*/
++#include <common.h>
++#include <X11/Xlib.h>
++
++PyObject *p_can_connect_to_xserver(PyObject *module, PyObject *args)
++{
++    (void)module;
++    (void)args;
++
++    Display *d = XOpenDisplay(NULL);
++    if (d == NULL)
++        Py_RETURN_FALSE;
++
++    XCloseDisplay(d);
++
++    Py_RETURN_TRUE;
++}
++
+-- 
+2.8.1
+
