@@ -1,0 +1,248 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Amitakhya Phukan <aphukan@fedoraproject.org>, 2012
+# ngoswami <ngoswami@redhat.com>, 2011-2013
+# ngoswami <ngoswami@redhat.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-abrt\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-24 13:27+0200\n"
+"PO-Revision-Date: 2013-07-24 11:40+0000\n"
+"Last-Translator: Jakub Filak <jfilak@redhat.com>\n"
+"Language-Team: Assamese (http://www.transifex.com/projects/p/gnome-abrt/language/as/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: as\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../src/gnome-abrt.desktop.in.h:1 ../src/gnome_abrt/views.py:221
+msgid "Automatic Bug Reporting Tool"
+msgstr "স্বচালিত বাগ সংবাদন সঁজুলি"
+
+#: ../src/gnome-abrt.desktop.in.h:2
+msgid "View and report application crashes"
+msgstr "এপ্লিকেচন স্খলনসমূহ চাওক আৰু সংবাদন কৰক"
+
+#: ../src/gnome_abrt/dbus_problems.py:89
+msgid "Can't add receiver of signal '{0}'on DBus system path '{1}': {2}"
+msgstr "DBus চিস্টেম পথ '{1}' ত সংকেত '{0}' ৰ গ্ৰাহক যোগ কৰিব নোৱাৰি: {2}"
+
+#: ../src/gnome_abrt/dbus_problems.py:102
+msgid "Can't connect to DBus system bus '{0}' path '{1}': {2}"
+msgstr "DBus চিস্টেম বাচ '{0}' পথ '{1}' লে সংযোগ কৰিব নোৱাৰি: {2}"
+
+#: ../src/gnome_abrt/dbus_problems.py:109
+msgid "Can't get interface '{0}' on path '{1}' in bus '{2}': {3}"
+msgstr "বাচ '{2}' ত পথ '{1}' ত আন্তঃপৃষ্ঠ প্ৰাপ্ত কৰিব নোৱাৰি: {3}"
+
+#: ../src/gnome_abrt/dbus_problems.py:151
+msgid "Can't chown problem '{0}' over DBus service: {1!s}"
+msgstr "DBus সেৱা: {1!s} ত সমস্যা '{0}' chown কৰিব নোৱাৰি"
+
+#: ../src/gnome_abrt/dbus_problems.py:167
+msgid "Can't get problem data from DBus service: {0!s}"
+msgstr "DBus সেৱাৰ পৰা সমস্যা তথ্য প্ৰাপ্ত কৰিব নোৱাৰি: {0!s}"
+
+#: ../src/gnome_abrt/dbus_problems.py:178
+msgid "Can't get list of problems from DBus service: {0!s}"
+msgstr "DBus সেৱাৰ পৰা সমস্যাসমূহৰ তালিকা প্ৰাপ্ত কৰিব নোৱাৰি: {0!s}"
+
+#: ../src/gnome_abrt/dbus_problems.py:192
+msgid "Can't delete problem over DBus service: {0!s}"
+msgstr "DBus সেৱাৰ পৰা সমস্যা মচি পেলাব নোৱাৰি: {0!s}"
+
+#: ../src/gnome_abrt/dialogs.py:50
+msgid "The description of problem is too short"
+msgstr "সমস্যাৰ বিৱৰণ অতি সৰু"
+
+#: ../src/gnome_abrt/dialogs.py:51
+msgid ""
+"In order to get more useful reports we do not accept reports with the "
+"description shorter than 10 letters."
+msgstr "অধিক উপযোগী সংবাদসমূহ প্ৰাপ্ত কৰিবলে আমি 10 আখৰৰ কম বিৱৰণ থকা সংবাদসমূহ গ্ৰহণ নকৰো।"
+
+#: ../src/gnome_abrt/dialogs.py:61
+msgid "The summary of problem is too short"
+msgstr "সমস্যাৰ সাৰাংশ অতি সৰু"
+
+#: ../src/gnome_abrt/dialogs.py:62
+msgid ""
+"In order to get more useful reports we do not accept reports with the "
+"summary shorter than 10 letters."
+msgstr "অধিক উপযোগী সংবাদসমূহ প্ৰাপ্ত কৰিবলে আমি 10 আখৰৰ কম বিৱৰণ থকা সংবাদসমূহ গ্ৰহণ নকৰো।"
+
+#: ../src/gnome_abrt/dialogs.py:88
+msgid "Problem description"
+msgstr "সমস্যাৰ বিৱৰণ"
+
+#: ../src/gnome_abrt/dialogs.py:96
+msgid "Summary:"
+msgstr "সাৰাংশ:"
+
+#: ../src/gnome_abrt/dialogs.py:108
+msgid "_Send"
+msgstr "পঠাওক (_S)"
+
+#. Sets text but text is selected :)
+#: ../src/gnome_abrt/dialogs.py:122
+msgid "A problem with ABRT"
+msgstr "ABRT ৰ সৈতে এটা সমস্যা"
+
+#: ../src/gnome_abrt/directory_problems.py:216
+msgid ""
+"You have probably reached inotify's limit on the number of watches in '{0}'."
+" The limit can be increased by proper configuration of inotify. For more "
+"details see man inotify(7). This event causes that you will not be notified "
+"about changes in problem data happening outside of this application. This "
+"event do not affect any other functionality."
+msgstr "আপুনি সম্ভবত '{0}' ত আাচসমূহৰ সংখ্যাত inotify ৰ সীমা প্ৰাপ্ত কৰিছে। সীমাক inotify ৰ সঠিক সংৰূপণ দ্বাৰা বৃদ্ধি কৰিব পাৰি। অধিক বিৱৰণৰ বাবে man inotify(7) চাওক। এই ঘটনাৰ বাবে এই এপ্লিকেচনৰ বাহিৰত হোৱা সমস্যা তথ্যৰ পৰিবৰ্তনৰ বিষয়ে আপোনাক অধিসূচীত কৰা নহব। এই ঘঠনায় অন্য কোনো কাৰ্য্যকৰীতাৰ ওপৰত প্ৰভাৱ নেপেলায়।"
+
+#: ../src/gnome_abrt/directory_problems.py:262
+msgid "Can't open directory: '{0}'"
+msgstr "{0} খোলিব নোৱাৰি: {1}"
+
+#: ../src/gnome_abrt/oops.glade.h:1
+msgid "Delete"
+msgstr "মচি পেলাওক"
+
+#: ../src/gnome_abrt/oops.glade.h:2
+msgid "Delete selected problems"
+msgstr "সম্পূৰ্ণ সমস্যা ডাইৰেকটৰি মচি পেলাওক"
+
+#: ../src/gnome_abrt/oops.glade.h:3
+msgid "_Report"
+msgstr "সংবাদ (_R)"
+
+#: ../src/gnome_abrt/oops.glade.h:4
+msgid "Submits selected problem"
+msgstr "এতিয়ালৈকে সংবাদিত সমস্যাসমূহ তালিকাভুক্ত কৰক"
+
+#: ../src/gnome_abrt/oops.glade.h:5
+msgid "Analy_ze"
+msgstr "বিশ্লেষণ কৰক (_z)"
+
+#: ../src/gnome_abrt/oops.glade.h:6
+msgid "Open selected problem for analysis"
+msgstr "বিশ্লেষণৰ বাবে নিৰ্বাচিত সমস্যা খোলক"
+
+#: ../src/gnome_abrt/oops.glade.h:7
+msgid "_All problems"
+msgstr "সকলো সমস্যা (_A)"
+
+#: ../src/gnome_abrt/oops.glade.h:8
+msgid "Show all known problems from all system users"
+msgstr "সকলো চিস্টেম ব্যৱহাৰকাৰীৰ পৰা জ্ঞাত সমস্যাসমূহ দেখুৱাওক"
+
+#: ../src/gnome_abrt/oops.glade.h:9
+msgid "_Open problem's data directory"
+msgstr "সমস্যাৰ তথ্য ডাইৰেকটৰি খোলক (_O)"
+
+#: ../src/gnome_abrt/oops.glade.h:10
+msgid ""
+"Opens the selected problem's data directory in the default file system "
+"browser"
+msgstr "অবিকল্পিত ফাইল চিস্টেম ব্ৰাউছাৰত নিৰ্বাচিত সমস্যা তথ্য ডাইৰেকটৰি খোলে"
+
+#: ../src/gnome_abrt/oops.glade.h:11
+msgid "_Copy problem's ID to Clipboard"
+msgstr "সমস্যাৰ ID ক ক্লিপবৰ্ডলৈ কপি কৰক (_C)"
+
+#: ../src/gnome_abrt/oops.glade.h:12
+msgid "Stores the selected problem's ID in Clibpoard"
+msgstr "নিৰ্বাচিত সমস্যাৰ ID ক ক্লিপবৰ্ডত সংৰক্ষণ কৰে"
+
+#: ../src/gnome_abrt/oops.glade.h:13
+msgid "Name"
+msgstr "নাম"
+
+#: ../src/gnome_abrt/oops.glade.h:14
+msgid "Version"
+msgstr "সংস্কৰণ"
+
+#: ../src/gnome_abrt/oops.glade.h:15
+msgid "Detected"
+msgstr "চিনাক্ত কৰা হৈছে"
+
+#: ../src/gnome_abrt/oops.glade.h:16
+msgid "Reported"
+msgstr "সংবাদ"
+
+#: ../src/gnome_abrt/oops.glade.h:17
+msgid "No problems detected!"
+msgstr "কোনো সমস্যা চিনাক্ত কৰা হোৱা নাই!"
+
+#: ../src/gnome_abrt/oops.glade.h:18
+msgid "No source selected!"
+msgstr ""
+
+#: ../src/gnome_abrt/oops.glade.h:19
+msgid "No source"
+msgstr ""
+
+#: ../src/gnome_abrt/oops.glade.h:20
+msgid "App"
+msgstr "এপ্লিকেচন"
+
+#: ../src/gnome_abrt/oops.glade.h:21
+msgid "Date"
+msgstr "তাৰিখ"
+
+#: ../src/gnome_abrt/problems.py:410
+msgid "Not found in cache but deleted: {0}"
+msgstr "ক্যাশত পোৱা নগল কিন্তু মচি পেলোৱা হল: {0}"
+
+#: ../src/gnome_abrt/tools.py:33
+msgid "Future"
+msgstr "ভৱিষ্যত"
+
+#: ../src/gnome_abrt/tools.py:40
+msgid "Yesterday"
+msgstr "যোৱাকালী"
+
+#: ../src/gnome_abrt/tools.py:49
+msgid "week"
+msgstr "সপ্তাহ"
+
+#: ../src/gnome_abrt/tools.py:52
+msgid "month"
+msgstr "মাহ"
+
+#: ../src/gnome_abrt/tools.py:55
+msgid "year"
+msgstr "বছৰ"
+
+#: ../src/gnome_abrt/tools.py:58
+msgid "Last {0!s}"
+msgstr "সৰ্বশেষ {0!s}"
+
+#: ../src/gnome_abrt/tools.py:60
+msgid "{0:d} {1!s}s ago"
+msgstr "{0:d} {1!s}s আগত"
+
+#: ../src/gnome_abrt/views.py:84 ../src/gnome_abrt/views.py:568
+#: ../src/gnome_abrt/views.py:570
+msgid "N/A"
+msgstr "অপ্ৰযোজ্য"
+
+#: ../src/gnome_abrt/views.py:570
+msgid " crashed"
+msgstr "স্খলন হল"
+
+#: ../src/gnome_abrt/views.py:583
+msgid "yes"
+msgstr "হয়"
+
+#: ../src/gnome_abrt/views.py:586
+msgid "no"
+msgstr "নহয়"
+
+#: ../src/gnome_abrt/views.py:594
+msgid ""
+"This problem hasn't been reported to <i>Bugzilla</i> yet. Our developers may need more information to fix the problem.\n"
+"Please consider <b>reporting it</b> - you may help them. Thank you."
+msgstr "এই সমস্যাক <i>Bugzilla</i> লৈ এতিয়াও সংবাদন কৰা হোৱা নাই। আমাৰ উন্নয়নকাৰীসকলক সমস্যাৰ সমাধান কৰিবলে অধিক তথ্যৰ প্ৰয়োজন হব পাৰে।\nইয়াক <b>সংবাদন</b> কৰাৰ কথা ভাবি চাওক - আপুনি তেওঁলোকক সহায় কৰিব পাৰে। ধন্যবাদ।"

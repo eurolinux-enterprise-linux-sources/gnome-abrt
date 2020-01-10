@@ -1,0 +1,189 @@
+From 562e606040b0e281b675425ec81ecd004f14040c Mon Sep 17 00:00:00 2001
+From: Jakub Filak <jfilak@redhat.com>
+Date: Fri, 13 Sep 2013 10:43:25 +0200
+Subject: [GNOME-ABRT PATCH 2/3] Fix issues found by new pylint
+
+Closes #30
+
+Signed-off-by: Jakub Filak <jfilak@redhat.com>
+---
+ pylintrc                             | 6 +++---
+ src/gnome_abrt/application.py        | 2 +-
+ src/gnome_abrt/config.py             | 3 ++-
+ src/gnome_abrt/dbus_problems.py      | 3 ++-
+ src/gnome_abrt/directory_problems.py | 6 +++---
+ src/gnome_abrt/problems.py           | 6 +++---
+ src/gnome_abrt/views.py              | 6 +++---
+ 7 files changed, 17 insertions(+), 15 deletions(-)
+
+diff --git a/pylintrc b/pylintrc
+index fdb32d3..ee3d219 100644
+--- a/pylintrc
++++ b/pylintrc
+@@ -12,7 +12,7 @@ profile=no
+ 
+ # Add files or directories to the blacklist. They should be base names, not
+ # paths.
+-ignore=.git,gnome_abrt_glade.py
++ignore=.git,gnome_abrt_glade.py,_wrappers.so
+ 
+ # Pickle collected data for later comparisons.
+ persistent=yes
+@@ -33,7 +33,7 @@ load-plugins=
+ # can either give multiple identifier separated by comma (,) or put this option
+ # multiple time (only on the command line, not in the configuration file where
+ # it should appear only once).
+-disable=C0111,W0212,R0201,R0903,R0904,I0011,W0603,W0622,I0001
++disable=C0111,W0212,R0201,R0903,R0904,I0011,W0603,W0622,I0001,R0912
+ 
+ 
+ [REPORTS]
+@@ -41,7 +41,7 @@ disable=C0111,W0212,R0201,R0903,R0904,I0011,W0603,W0622,I0001
+ # Set the output format. Available formats are text, parseable, colorized, msvs
+ # (visual studio) and html. You can also give a reporter class, eg
+ # mypackage.mymodule.MyReporterClass.
+-output-format=parseable
++msg-template={path}:{line}: [{msg_id}({symbol}), {obj}] {msg} % (self.name, self.line_format))
+ 
+ # Include message's id in output
+ include-ids=yes
+diff --git a/src/gnome_abrt/application.py b/src/gnome_abrt/application.py
+index e4e24d9..140042c 100644
+--- a/src/gnome_abrt/application.py
++++ b/src/gnome_abrt/application.py
+@@ -81,7 +81,7 @@ def compare_cmdline(cmdline, desktop_entry):
+ 
+     # try to handle interpreters like python
+     if not ret:
+-        cmdargs = filter(lambda x: x, cmdline.split(" "))
++        cmdargs = [x for x in cmdline.split(" ") if x]
+         if len(cmdargs) > 1:
+             ret = compare_executable(cmdargs[1], desktop_entry)
+ 
+diff --git a/src/gnome_abrt/config.py b/src/gnome_abrt/config.py
+index 0506b78..94aea46 100644
+--- a/src/gnome_abrt/config.py
++++ b/src/gnome_abrt/config.py
+@@ -46,7 +46,8 @@ class Configuration(object):
+         oldvalue = opt.value
+         if oldvalue != value:
+             opt.value = value
+-            map(lambda o: o.option_updated(self, option), opt.observers)
++            for observer in opt.observers:
++                observer.option_updated(self, option)
+ 
+     def __delitem__(self, option):
+         pass
+diff --git a/src/gnome_abrt/dbus_problems.py b/src/gnome_abrt/dbus_problems.py
+index 1c964d5..342fa18 100644
+--- a/src/gnome_abrt/dbus_problems.py
++++ b/src/gnome_abrt/dbus_problems.py
+@@ -200,7 +200,7 @@ class StandardProblems(DBusProblemSource.Driver):
+     def __init__(self, source):
+         super(StandardProblems, self).__init__(source)
+ 
+-        class ConfigObserver():
++        class ConfigObserver(object):
+             def __init__(self, source):
+                 self._source = source
+ 
+@@ -212,6 +212,7 @@ class StandardProblems(DBusProblemSource.Driver):
+         conf = config.get_configuration()
+         conf.set_watch("all_problems", ConfigObserver(self._source))
+ 
++    #pylint: disable=W0142
+     @property
+     def get_problems_method(self):
+         conf = config.get_configuration()
+diff --git a/src/gnome_abrt/directory_problems.py b/src/gnome_abrt/directory_problems.py
+index 29a7ed0..1c58b34 100644
+--- a/src/gnome_abrt/directory_problems.py
++++ b/src/gnome_abrt/directory_problems.py
+@@ -150,7 +150,7 @@ class INOTIFYSourceHandler(ProcessEvent):
+                             .format(ex))
+ 
+ 
+-class INOTIFYWatcher:
++class INOTIFYWatcher(object):
+ 
+     def __init__(self, source, directory, context):
+         # context is the instance variable because
+@@ -219,7 +219,7 @@ _("You have probably reached inotify's limit on the number of watches in '{0}'."
+ "about changes in problem data happening outside of this application. This "
+ "event do not affect any other functionality.").format(self._directory))
+ 
+-class NotInitializedDirectorySource():
++class NotInitializedDirectorySource(object):
+ 
+     def __init__(self, parent):
+         self._parent = parent
+@@ -245,7 +245,7 @@ class NotInitializedDirectorySource():
+         return True
+ 
+ 
+-class InitializedDirectoryProblemSource():
++class InitializedDirectoryProblemSource(object):
+ 
+     def __init__(self, parent, directory, context=None):
+         self._parent = parent
+diff --git a/src/gnome_abrt/problems.py b/src/gnome_abrt/problems.py
+index 6e00c40..517cc5a 100644
+--- a/src/gnome_abrt/problems.py
++++ b/src/gnome_abrt/problems.py
+@@ -63,11 +63,11 @@ class ProblemSource(object):
+     def refresh(self):
+         pass
+ 
+-class Problem:
++class Problem(object):
+     INITIAL_ELEMENTS = ['component', 'executable', 'cmdline', 'count', 'type',
+                         'last_occurrence', 'time', 'reason']
+ 
+-    class Submission:
++    class Submission(object):
+         URL = "URL"
+         MSG = "MSG"
+         BTHASH = "BTHASH"
+@@ -288,7 +288,7 @@ class MultipleSources(ProblemSource):
+ 
+         self.sources = sources
+ 
+-        class SourceObserver:
++        class SourceObserver(object):
+             def __init__(self, parent):
+                 self.parent = parent
+ 
+diff --git a/src/gnome_abrt/views.py b/src/gnome_abrt/views.py
+index dfea616..d85affc 100644
+--- a/src/gnome_abrt/views.py
++++ b/src/gnome_abrt/views.py
+@@ -59,7 +59,7 @@ def problems_filter(model, itrtr, data):
+     return match_pattern(pattern, model[itrtr][2])
+ 
+ 
+-class ProblemsFilter:
++class ProblemsFilter(object):
+ 
+     def __init__(self, window, view):
+         self.current_pattern = ""
+@@ -188,7 +188,7 @@ class OopsWindow(Gtk.ApplicationWindow):
+             return obj
+ 
+ 
+-    class SourceObserver:
++    class SourceObserver(object):
+         def __init__(self, wnd):
+             self.wnd = wnd
+             self._enabled = True
+@@ -219,7 +219,7 @@ class OopsWindow(Gtk.ApplicationWindow):
+                 self.wnd._disable_source(ex.source, ex.temporary)
+ 
+ 
+-    class OptionsObserver:
++    class OptionsObserver(object):
+         def __init__(self, wnd):
+             self.wnd = wnd
+ 
+-- 
+1.8.3.1
+

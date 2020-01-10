@@ -1,0 +1,35 @@
+From 4eefc61078eb21a7446d9030b14bd26abd10c72a Mon Sep 17 00:00:00 2001
+From: Jakub Filak <jfilak@redhat.com>
+Date: Fri, 13 Sep 2013 08:56:21 +0200
+Subject: [GNOME-ABRT PATCH 1/3] Do not crash on None in signal handler
+
+Closes rhbz#1005472
+
+Signed-off-by: Jakub Filak <jfilak@redhat.com>
+---
+ src/gnome_abrt/views.py | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/src/gnome_abrt/views.py b/src/gnome_abrt/views.py
+index 1d7ddb9..dfea616 100644
+--- a/src/gnome_abrt/views.py
++++ b/src/gnome_abrt/views.py
+@@ -497,6 +497,15 @@ class OopsWindow(Gtk.ApplicationWindow):
+ 
+         if storage_problems:
+             model = self._builder.tv_problems.get_model()
++
++            # For some strange reason, get_model() sometimes returns None when
++            # this function is called from a signal handler but the signal
++            # handler is synchronously called from GMainLoop so there is no
++            # place for race conditions. If the described situation arises,
++            # base model will be used.
++            if model is None:
++                model = self._builder.ls_problems
++
+             pit = None
+             if old_selection:
+                 pit = self._find_problem_iter(old_selection[0], model)
+-- 
+1.8.3.1
+
